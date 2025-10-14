@@ -9,10 +9,8 @@ class SistemaAlunos:
         self.root.title("Sistema de Gestão de Alunos")
         self.root.geometry("800x600")
         
-        # DataFrame para armazenar os dados
         self.df = pd.DataFrame(columns=['Nome', 'Idade', 'Curso', 'Nota Final'])
-        
-        # Carregar dados existentes
+ 
         self.carregar_csv_silencioso()
         
         self.criar_interface()
@@ -32,20 +30,17 @@ class SistemaAlunos:
             self.df = pd.DataFrame(columns=['Nome', 'Idade', 'Curso', 'Nota Final'])
     
     def criar_interface(self):
-        # Frame principal
+
         main_frame = ttk.Frame(self.root, padding="10")
         main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Título
         title_label = tk.Label(main_frame, text="Sistema de Cadastro de Alunos", 
                               font=('Arial', 14, 'bold'))
         title_label.pack(pady=10)
         
-        # Frame para cadastro
         frame_cadastro = ttk.LabelFrame(main_frame, text="Cadastrar Aluno", padding=10)
         frame_cadastro.pack(fill=tk.X, pady=5)
         
-        # Campos de entrada
         campos = [
             ("Nome:", "entry_nome"),
             ("Idade:", "entry_idade"), 
@@ -59,21 +54,17 @@ class SistemaAlunos:
             entry.grid(row=i, column=1, padx=5, pady=2)
             setattr(self, entry_var, entry)
         
-        # Botão de cadastro
         ttk.Button(frame_cadastro, text="Cadastrar Aluno", 
                   command=self.cadastrar_aluno).grid(row=4, column=1, pady=10, sticky="e")
         
-        # Frame para controles
         frame_controles = ttk.LabelFrame(main_frame, text="Controles", padding=10)
         frame_controles.pack(fill=tk.X, pady=5)
         
-        # Filtro
         ttk.Label(frame_controles, text="Filtrar por nota mínima:").grid(row=0, column=0, sticky="w")
         self.entry_filtro = ttk.Entry(frame_controles, width=10)
         self.entry_filtro.insert(0, "6.0")
         self.entry_filtro.grid(row=0, column=1, padx=5)
         
-        # Botões de controle
         botoes = [
             ("Aplicar Filtro", self.filtrar_alunos),
             ("Exportar Relatório", self.exportar_relatorio),
@@ -86,18 +77,15 @@ class SistemaAlunos:
             ttk.Button(frame_controles, text=texto, 
                       command=comando).grid(row=0, column=i+2, padx=2)
         
-        # Frame da tabela
         frame_tabela = ttk.LabelFrame(main_frame, text="Alunos Cadastrados", padding=10)
         frame_tabela.pack(fill=tk.BOTH, expand=True, pady=5)
         
-        # Treeview com scrollbar
         tree_frame = ttk.Frame(frame_tabela)
         tree_frame.pack(fill=tk.BOTH, expand=True)
         
         self.tree = ttk.Treeview(tree_frame, columns=('Nome', 'Idade', 'Curso', 'Nota Final'), 
                                 show='headings', height=12)
         
-        # Configurar colunas
         colunas = [
             ('Nome', 200),
             ('Idade', 80),
@@ -109,14 +97,12 @@ class SistemaAlunos:
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width, anchor='center')
         
-        # Scrollbar
         scrollbar = ttk.Scrollbar(tree_frame, orient=tk.VERTICAL, command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
         
         self.tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        
-        # Status bar
+
         self.status_var = tk.StringVar()
         self.status_var.set(f"Total de alunos: {len(self.df)}")
         status_bar = ttk.Label(main_frame, textvariable=self.status_var, relief=tk.SUNKEN)
@@ -129,8 +115,7 @@ class SistemaAlunos:
         idade = self.entry_idade.get().strip()
         curso = self.entry_curso.get().strip()
         nota = self.entry_nota.get().strip()
-        
-        # Validação
+
         if not all([nome, idade, curso, nota]):
             messagebox.showerror("Erro", "Todos os campos devem ser preenchidos!")
             return
@@ -150,8 +135,7 @@ class SistemaAlunos:
         except ValueError:
             messagebox.showerror("Erro", "Idade deve ser número inteiro e Nota deve ser número decimal")
             return
-        
-        # Adicionar aluno
+
         novo_aluno = {
             'Nome': nome,
             'Idade': idade_int,
@@ -160,8 +144,7 @@ class SistemaAlunos:
         }
         
         self.df = pd.concat([self.df, pd.DataFrame([novo_aluno])], ignore_index=True)
-        
-        # Limpar campos
+
         for entry in [self.entry_nome, self.entry_idade, self.entry_curso, self.entry_nota]:
             entry.delete(0, tk.END)
         
