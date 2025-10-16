@@ -1,24 +1,26 @@
-Sistema de Gestão de Alunos
-Sistema simples para cadastro e gerenciamento de alunos desenvolvido em Python com interface gráfica Tkinter.
+🎓 Sistema de Gestão de Alunos
+https://img.shields.io/badge/Python-3.6%252B-blue
+https://img.shields.io/badge/GUI-Tkinter-green
+https://img.shields.io/badge/Data-Pandas-orange
+https://img.shields.io/badge/License-MIT-lightgrey
 
-Funcionalidades
-Cadastro de Alunos: Adicione novos alunos com nome, idade, curso e nota final
+Um sistema completo e intuitivo para cadastro, gerenciamento e relatórios de alunos desenvolvido em Python.
 
-Visualização de Dados: Veja todos os alunos cadastrados em uma tabela organizada
-
-Filtros: Filtre alunos por nota mínima
-
-Exportação de Dados: Salve e carregue dados em arquivo CSV
-
-Relatórios: Exporte relatórios filtrados para CSV
-
-Requisitos
+✨ Funcionalidades
+Funcionalidade	Descrição
+📝 Cadastro de Alunos	Formulário completo com validação de dados
+📊 Visualização em Tabela	Interface organizada para visualizar todos os alunos
+🔍 Filtros Inteligentes	Filtre alunos por nota mínima personalizada
+💾 Persistência de Dados	Salve e carregue dados em arquivo CSV
+📈 Relatórios Exportáveis	Gere relatórios filtrados em CSV
+🚀 Começando
+Pré-requisitos
 Python 3.6 ou superior
 
-Biblioteca Pandas
+Gerenciador de pacotes pip
 
-Instalação
-Instale a biblioteca Pandas:
+Instalação Rápida
+Instale as dependências:
 
 bash
 pip install pandas
@@ -26,62 +28,129 @@ Execute o sistema:
 
 bash
 python main.py
-Como Usar
-Cadastrar Aluno
-Preencha os campos no formulário:
-
-Nome completo
-
-Idade (número inteiro)
-
-Curso
-
-Nota final (0 a 10)
+🖥️ Interface do Sistema
+🎯 Layout Principal
+text
+┌─────────────────────────────────────────────────────────────┐
+│                SISTEMA DE GESTÃO DE ALUNOS                  │
+├───────────────┬─────────────────────────────────────────────┤
+│                                                             │
+│   📝 CADASTRAR ALUNO          📋 ALUNOS CADASTRADOS        │
+│   ───────────────────          ┌─────────────────────┐     │
+│   Nome: ___________            │ Nome       Idade    │     │
+│   Idade: __________            │ João Silva   20     │     │
+│   Curso: ___________           │ Maria Santos 22     │     │
+│   Nota: ___________            │ Pedro Costa  19     │     │
+│                                 └─────────────────────┘     │
+│   [ Cadastrar Aluno ]                                       │
+│                                                             │
+│   ⚙️ CONTROLES                                              │
+│   Nota mínima: [6.0] [Aplicar Filtro] [Exportar Relatório]  │
+│   [Salvar CSV] [Carregar CSV] [Mostrar Todos]               │
+│                                                             │
+│   Status: ✅ Sistema pronto | Total: 3 alunos              │
+└─────────────────────────────────────────────────────────────┘
+📋 Como Usar
+1. 🎓 Cadastrar Aluno
+Preencha todos os campos do formulário
 
 Clique em "Cadastrar Aluno"
 
-Filtrar Alunos
-Digite a nota mínima no campo "Filtrar por nota mínima"
+O aluno aparecerá automaticamente na tabela
+
+2. 🔍 Filtrar Alunos
+Digite a nota mínima desejada (ex: 7.5)
 
 Clique em "Aplicar Filtro"
 
-Salvar Dados
-Clique em "Salvar CSV" para salvar todos os dados no arquivo alunos.csv
+A tabela mostrará apenas alunos com nota ≥ ao valor informado
 
-Carregar Dados
-Clique em "Carregar CSV" para carregar dados salvos anteriormente
+3. 💾 Salvar Dados
+Clique em "Salvar CSV" para persistir os dados no arquivo alunos.csv
 
-Exportar Relatório
-Aplique um filtro (ex: nota ≥ 6.0)
+4. 📂 Carregar Dados
+Clique em "Carregar CSV" para restaurar dados salvos anteriormente
 
-Clique em "Exportar Relatório" para gerar um arquivo CSV com os dados filtrados
+5. 📊 Exportar Relatório
+Aplique um filtro (ex: nota ≥ 8.0)
 
-Estrutura de Arquivos
-main.py - Código principal do sistema
+Clique em "Exportar Relatório"
 
-alunos.csv - Arquivo de dados dos alunos (criado automaticamente)
+Será gerado o arquivo relatorio_nota_acima_8.0.csv
 
-relatorio_nota_acima_X.csv - Relatórios exportados (criados automaticamente)
+🗂 Estrutura do Projeto
+text
+sistema_alunos/
+├── 📄 main.py                          # Código principal
+├── 💾 alunos.csv                       # Banco de dados (automático)
+├── 📊 relatorio_nota_acima_*.csv       # Relatórios (automático)
+└── 📖 README.md                        # Documentação
+📊 Exemplo de Dados
+csv
+Nome,Idade,Curso,Nota Final
+João Silva,20,Desenvolvimento de Sistemas,8.5
+Maria Santos,22,Análise e Desenvolvimento de Sistemas,9.0
+Pedro Costa,19,Desenvolvimento de Sistemas,7.5
+⚙️ Validações Implementadas
+Campo	Validação
+Nome	Campo obrigatório
+Idade	Número inteiro (0-100)
+Curso	Campo obrigatório
+Nota Final	Número decimal (0.0-10.0)
+🛠 Tecnologias Utilizadas
+Tecnologia	Finalidade
+Python	Linguagem de programação
+Tkinter	Interface gráfica do usuário
+Pandas	Manipulação e análise de dados
+CSV	Armazenamento persistente de dados
+🐛 Solução de Problemas
+❌ Erro: "Módulo pandas não encontrado"
+✅ Solução:
 
-Validações
-O sistema inclui validações para:
+bash
+pip install pandas
+❌ Erro: "No columns to parse from file"
+✅ Solução: O arquivo CSV está vazio. Delete alunos.csv e execute novamente.
 
-Campos obrigatórios
+❌ Interface não carrega
+✅ Solução: Verifique se o Tkinter está instalado:
 
-Idade entre 0 e 100 anos
+bash
+python -m tkinter
+📝 Exemplos de Uso
+🏫 Cenário Educacional
+python
+# Cadastro de aluno exemplo:
+Nome: "Ana Oliveira"
+Idade: 21
+Curso: "Desenvolvimento de Sistemas"
+Nota: 8.8
+📈 Geração de Relatórios
+python
+# Alunos aprovados (nota ≥ 6.0)
+Filtro: 6.0 → Exportar → "relatorio_nota_acima_6.0.csv"
 
-Nota entre 0 e 10
+# Alunos destaque (nota ≥ 8.5)
+Filtro: 8.5 → Exportar → "relatorio_nota_acima_8.5.csv"
+🤝 Contribuindo
+Faça um fork do projeto
 
-Formato correto dos dados numéricos
+Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
 
-Tecnologias Utilizadas
-Python
+Commit suas mudanças (git commit -m 'Add some AmazingFeature')
 
-Tkinter (Interface gráfica)
+Push para a branch (git push origin feature/AmazingFeature)
 
-Pandas (Manipulação de dados)
+Abra um Pull Request
 
-CSV (Armazenamento)
+📄 Licença
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para detalhes.
 
-Desenvolvido para fins educacionais
-Sistema desenvolvido como exercício de fixação em Python com interface gráfica e manipulação de dados.
+👨‍💻 Desenvolvido por
+Projeto desenvolvido para exercício de fixação em Python com Tkinter e Pandas.
+
+<div align="center">
+🎊 Divirta-se usando o sistema!
+💡 Dica: Sempre faça backup do arquivo alunos.csv antes de grandes modificações!
+
+</div>
